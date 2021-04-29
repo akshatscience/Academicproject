@@ -15,7 +15,8 @@ urlpatterns = [
     path('login/',views.login_view,name='admin_login'),
     path('election/',views.election,name='election'),
     #path('yourelection/',views.select_election,name='select_election'),
-    path('winner/',views.winner,name='winner')
+    path('winner/',views.winner,name='winner'),
+    path('deletecandidate/<str:pk>',views.candidate_delete,name='deletecandidate')
   
 ]
 

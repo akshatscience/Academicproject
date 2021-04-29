@@ -60,6 +60,9 @@ def login_view(request):
 def election(request):
     
     electionform= ElectionForm()
+    election_id=Election.objects.filter(user_id=request.user.id)[0]
+    candidate_data=Candidate.objects.filter(election_id=election_id)
+    
     if request.method=='POST':
         name=request.POST.get('name')
         sdate=request.POST.get('sdate')
@@ -72,7 +75,7 @@ def election(request):
         logout(request)
         return redirect('/')
 
-    return render(request,'election.html',{'form':electionform})
+    return render(request,'election.html',{'form':electionform,'candidate':candidate_data})
 
 
 
@@ -195,3 +198,12 @@ def candidate(request):
 
     
 
+#delete candidate
+def candidate_delete(request,pk):
+    candidate_id=Candidate.objects.get(Candidate_id=pk)
+
+    if request.method=='POST':
+        candidate_id.delete()
+        return redirect('election')
+
+    return render(request,'candidate_delete.html',{'candidate':candidate_id})

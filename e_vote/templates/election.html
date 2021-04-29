@@ -30,6 +30,28 @@
         <input type="submit" name="" id="" />
       </form>
     </div>
+    <div>
+      
+      {% for cand in candidate %} 
+      {{cand.name}}
+      
+      <img
+        src="{{cand.Candidate_photo.url}}"
+        alt=""
+        width="100"
+        height="100"
+      />
+      <img
+        src="{{cand.party_symbol.url}}"
+        alt=""
+        width="100"
+        height="100"
+      />
+      <a href="{% url 'deletecandidate' cand.Candidate_id %}">Candidate Verification</a>
+      {% endfor %}
+
+
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
